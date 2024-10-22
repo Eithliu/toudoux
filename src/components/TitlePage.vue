@@ -1,16 +1,26 @@
-<script setup>
+<script setup lang="ts">
 import { inject } from 'vue';
+import { RouterKey, StorageKey } from '../types.ts';
 
-const router = inject('router');
+const router = inject(RouterKey);
+const storage = inject(StorageKey);
+const toudoux = storage.getAllToudoux();
 
 function goToNewToudou() {
-  router.navigate('new-toudou');
+  router!.navigate('new-toudou');
 }
+function goToToudouDetails(id: string) {
+  router!.navigate('toudou-details', { id });
+}
+
 </script>
 
 <template>
   <div class="wrapper">
     <h1>My Toudoux</h1>
+    <ul v-for="toudou in toudoux">
+      <li :style="`color: ${toudou.color}`" @click="goToToudouDetails(toudou.id)">{{toudou.title}}</li>
+    </ul>
     <button @click="goToNewToudou()">Créer une toudoux</button>
   </div>
 </template>
@@ -20,16 +30,5 @@ function goToNewToudou() {
   display: flex;
   flex-direction: column;
   color: #54577C;
-}
-button {
-  padding: 1rem .5rem;
-  background: #4A7B9D;
-  border-radius: 10px;
-  color: white;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-button:active {
-  background: #366788;
 }
 </style>

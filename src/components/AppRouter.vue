@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import TitlePage from './TitlePage.vue';
 import NewToudou from './NewToudou.vue';
+import ToudouDetails from './ToudouDetails.vue';
 import ErrorPage from "./ErrorPage.vue";
+
+import { RouterKey } from '../types.ts';
 
 import { computed, ref, provide } from 'vue';
 
@@ -12,18 +15,20 @@ const currentView = computed(() => {
       return TitlePage;
     case 'new-toudou':
       return NewToudou;
+    case 'toudou-details':
+      return ToudouDetails;
     default:
       return ErrorPage;
   }
 })
 const viewProps = ref({});
-function setView(view: string, props: any) {
+function setView(view: string, props?: any) {
   currentViewName.value = view;
   if (props) {
     viewProps.value = props;
   }
 }
-provide('router', { view: currentViewName, props: viewProps, navigate: setView });
+provide(RouterKey, { view: currentViewName, props: viewProps, navigate: setView });
 </script>
 
 <template>
