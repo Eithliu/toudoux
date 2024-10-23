@@ -12,23 +12,34 @@ import StorageService from './components/StorageService.vue';
 </template>
 
 <style>
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-family: Helvetica, Arial, sans-serif;
+html {
   background: #ecf5ff;
 }
+body {
+  margin: 0;
+}
+#app {
+  display: flex;
+  align-items: flex-start;
+  width: 100vw;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.hidden {
+  display: none;
+}
 button {
-  padding: 1rem .5rem;
-  background: #4A7B9D;
-  border-radius: 10px;
-  color: white;
+  background: transparent;
+  border: none;
+  color: #1294e1;
   font-weight: bold;
-  text-transform: uppercase;
+  padding: 0;
 }
 button:active {
   background: #366788;
+}
+h1 {
+  font-size: 20px;
+  color: black;
+  margin-left: 1rem;
 }
 </style>
