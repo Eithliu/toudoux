@@ -17,11 +17,25 @@ function goToToudouDetails(id: string) {
 
 <template>
   <div class="wrapper">
-    <h1>My Toudoux</h1>
-    <ul v-for="toudou in toudoux">
-      <li :style="`color: ${toudou.color}`" @click="goToToudouDetails(toudou.id)">{{toudou.title}}</li>
-    </ul>
-    <button @click="goToNewToudou()">Créer une toudoux</button>
+    <main class="main">
+      <h1>My Toudoux</h1>
+      <div class="card">
+        <ul>
+          <li
+            v-for="toudou in toudoux"
+            @click="goToToudouDetails(toudou.id)"
+            class="list-point line"
+          >
+            <span class="pastille" :style="`background-color: ${toudou.color}`"></span>
+            {{toudou.title}}
+            <span> > </span>
+          </li>
+        </ul>
+      </div>
+    </main>
+    <footer>
+      <button @click="goToNewToudou()" class="new-toudou-btn"><span class="plus">+</span> Créer une toudoux</button>
+    </footer>
   </div>
 </template>
 
@@ -29,6 +43,62 @@ function goToToudouDetails(id: string) {
 .wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
   color: #54577C;
+  width: 100%;
+  min-height: 95vh;
+}
+
+ul {
+  list-style-type: none;
+  margin-block-end: 1em;
+  padding-inline-start: .4rem;
+}
+
+.list-point {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: .6rem;
+}
+
+.line {
+  border-bottom: solid 1px #dedede;
+  display: flex;
+}
+
+.list-point:last-child {
+  border-bottom: none;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.pastille {
+  width: 25px;
+  height: 25px;
+  border-radius: 15px;
+}
+
+.card {
+  background: white;
+  margin: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #e3e3e3;
+  text-align: left;
+}
+footer {
+  display: flex;
+  justify-content: flex-end;
+  //flex-direction: row-reverse;
+  margin-right: 1rem;
+}
+.new-toudou-btn {
+  font-size: 15px;
 }
 </style>
