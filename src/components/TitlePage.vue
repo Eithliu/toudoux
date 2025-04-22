@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import { inject } from 'vue';
-import { RouterKey, StorageKey } from '../types.ts';
+import { inject } from "vue";
+import { RouterKey, StorageKey } from "../types.ts";
 
 const router = inject(RouterKey);
 const storage = inject(StorageKey);
 const toudoux = storage.getAllToudoux();
 
 function goToNewToudou() {
-  router!.navigate('new-toudou');
+  router!.navigate("new-toudou");
 }
 function goToToudouDetails(id: string) {
-  router!.navigate('toudou-details', { id });
+  router!.navigate("toudou-details", { id });
 }
-
 </script>
 
 <template>
@@ -26,15 +25,20 @@ function goToToudouDetails(id: string) {
             @click="goToToudouDetails(toudou.id)"
             class="list-point line"
           >
-            <span class="pastille" :style="`background-color: ${toudou.color}`"></span>
-            {{toudou.title}}
+            <span
+              class="pastille"
+              :style="`background-color: ${toudou.color}`"
+            ></span>
+            {{ toudou.title }}
             <span> > </span>
           </li>
         </ul>
       </div>
     </main>
     <footer>
-      <button @click="goToNewToudou()" class="new-toudou-btn"><span class="plus">+</span> Créer une toudoux</button>
+      <button @click="goToNewToudou()" class="new-toudou-btn">
+        <span class="plus">+</span> Créer une toudoux
+      </button>
     </footer>
   </div>
 </template>
@@ -45,7 +49,7 @@ function goToToudouDetails(id: string) {
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
-  color: #54577C;
+  color: #54577c;
   width: 100%;
   min-height: 95vh;
 }
@@ -53,7 +57,7 @@ function goToToudouDetails(id: string) {
 ul {
   list-style-type: none;
   margin-block-end: 1em;
-  padding-inline-start: .4rem;
+  padding-inline-start: 0.4rem;
 }
 
 .list-point {
@@ -61,7 +65,7 @@ ul {
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  padding: .6rem;
+  padding: 0.6rem;
 }
 
 .line {
@@ -76,7 +80,6 @@ ul {
 .main {
   display: flex;
   flex-direction: column;
-
 }
 
 .pastille {

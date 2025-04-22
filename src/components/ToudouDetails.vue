@@ -2,13 +2,12 @@
 import { inject, ref } from "vue";
 import { RouterKey, StorageKey } from "../types.ts";
 
-
 const router = inject(RouterKey);
 const storage = inject(StorageKey);
 
 const props = defineProps<{
-  id: string,
-  title: string,
+  id: string;
+  title: string;
 }>();
 
 const toudou = storage.getToudouById(props.id);
@@ -25,7 +24,7 @@ function discardChange() {
 }
 
 function goBack() {
-  router!.navigate('title-page');
+  router!.navigate("title-page");
 }
 
 function goToEditMode() {
@@ -35,7 +34,9 @@ function goToEditMode() {
 
 <template>
   <div class="details-container">
-    <button class="return-button" @click="goBack">< Retour vers mes Toudoux</button>
+    <button class="return-button" @click="goBack">
+      < Retour vers mes Toudoux
+    </button>
     <div v-if="toudou">
       <div v-if="isEditMode" class="edit-mode">
         <input :value="toudou.title" class="edit-input" />
@@ -44,7 +45,7 @@ function goToEditMode() {
       </div>
       <div v-else>
         <button @click.prevent="goToEditMode">
-          <h1 :style="`color: ${toudou.color}`">{{toudou.title}}</h1>
+          <h1 :style="`color: ${toudou.color}`">{{ toudou.title }}</h1>
         </button>
       </div>
     </div>
@@ -56,30 +57,26 @@ function goToEditMode() {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
 }
 button {
   cursor: pointer;
+  border: none;
 }
 .return-button {
   border: none;
   font-size: 1rem;
   font-weight: normal;
   border-radius: 3px;
-  padding: 1rem 2rem 1rem .4rem;
+  padding: 1rem 2rem 1rem 0.4rem;
 }
 
 .edit-mode {
   display: flex;
   margin-top: 50px;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 .edit-input {
-  padding: 1rem 2rem 1rem .5rem;
-}
-
-.button-check {
-  border: solid 1px grey;
+  padding: 1rem 2rem 1rem 0.5rem;
 }
 </style>
