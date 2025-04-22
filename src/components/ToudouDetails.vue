@@ -8,13 +8,16 @@ const storage = inject(StorageKey);
 
 const props = defineProps<{
   id: string,
+  title: string,
 }>();
 
 const toudou = storage.getToudouById(props.id);
 const isEditMode = ref(false);
+const newTitle = ref(toudou.title);
 
 function validateChange() {
-   isEditMode.value = false;
+  isEditMode.value = false;
+  storage.updateToudouById(toudou.id, newTitle.value);
 }
 
 function discardChange() {

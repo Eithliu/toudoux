@@ -1,8 +1,17 @@
 <script setup lang="ts">
 import { provide } from 'vue';
-import { StorageKey } from '../types.ts';
-import type { NewToudou } from '../types.ts';
+import { StorageKey } from "../types.ts";
+import type { NewToudou, NewTachounette } from '../types.ts';
 
+function saveNewTachounette({title, tag = ''}: NewTachounette, toudouId: String) {
+  const newTachounette = {
+    title,
+    tag,
+    toudouId,
+    id: self.crypto.randomUUID(),
+  }
+
+}
 
 function saveNewToudou({title, color}: NewToudou) {
   const newToudou = {
@@ -30,6 +39,12 @@ function getToudouById(id: string) {
   return toudou;
 }
 
+function updateToudouById(id: string, newTitle: string) {
+  const toudou = getToudouById(id);
+  toudou.name = newTitle;
+  persistToudoux(toudou);
+}
+
 function getAllToudoux() {
   const rawToudoux = localStorage.getItem('toudoux') ?? '[]';
   return JSON.parse(rawToudoux);
@@ -39,7 +54,7 @@ function persistToudoux(toudoux: any[]) {
   localStorage.setItem('toudoux', JSON.stringify(toudoux));
 }
 
-provide(StorageKey, { saveNewToudou, getToudouById, getAllToudoux });
+provide(StorageKey, { saveNewToudou, getToudouById, getAllToudoux, saveNewTachounette, updateToudouById });
 </script>
 
 <template>

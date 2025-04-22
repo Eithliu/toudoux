@@ -13,5 +13,11 @@ export interface NewToudou {
   color: string,
 }
 
+export interface NewTachounette {
+  toudouId?: number,
+  title: string,
+  tag?: string,
+}
+
 export const RouterKey: InjectionKey<Router> = Symbol('router')
 export const StorageKey: InjectionKey<Storage> = Symbol('store')
